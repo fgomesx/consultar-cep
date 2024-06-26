@@ -38,7 +38,7 @@ function App() {
       setCep(response.data);
 
       // Gerar um link do mapa com base no CEP
-      const mapLink = `https://www.google.com/maps/search/${response.data.cep}`;
+      const mapLink = `https://www.google.com/maps/search/?api=1&query=${response.data.cep}`;
 
       // As informações do CEP para exibição
       const text = `
