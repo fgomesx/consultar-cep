@@ -1,10 +1,11 @@
 .container {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background: linear-gradient(#121212, #313117);
+    overflow: auto;
 }
 
 .title {
@@ -105,13 +106,19 @@
 
 .window-content {
     display: flex;
-    justify-content: center;
     margin: 10px;
+    margin-right: 0;
     flex-direction: column;
     color: #fff;
+    max-height: 35vh;
+    overflow: auto;
 }
 
 .main span {
+    color: #28c840;
+}
+
+.main a {
     color: #28c840;
 }
 

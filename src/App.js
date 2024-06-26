@@ -12,7 +12,7 @@ const TypingText = ({ text }) => {
       <ReactTyped
         style={{ whiteSpace: 'pre-line' }}
         strings={[text]}
-        typeSpeed={5}
+        typeSpeed={0}
         startDelay={0}
         loop={false}
         cursorChar={"_"}
@@ -34,16 +34,21 @@ function App() {
     }
 
     try { // Faz a requisição à API com o CEP fornecido
-      const response = await api.get(`${input}`);
+      const response = await api.get(`${input}/json`);
       setCep(response.data);
+
+      // Gerar um link do mapa com base no CEP
+      const mapLink = `https://www.google.com/maps/search/${response.data.cep}`;
 
       // As informações do CEP para exibição
       const text = `
-        Local: ${response.data.city} - ${response.data.state} \n
-        Bairro: ${response.data.neighborhood} \n
-        Endereço: ${response.data.street} \n
-        Coordenadas: ${response.data.location.coordinates.latitude}, ${response.data.location.coordinates.longitude} \n
-        Fonte: ${response.data.service} 
+        Logradouro: ${response.data.logradouro} \n
+        Complemento: ${response.data.complemento} \n
+        Bairro: ${response.data.bairro} \n
+        Local: ${response.data.localidade} - ${response.data.uf} \n
+        Código IBGE: ${response.data.ibge} \n
+        DDD: ${response.data.ddd} \n
+        Ver no Mapa: <a href="${mapLink}" target="_blank" rel="noopener noreferrer">Clique aqui</a>
       `;
 
       setCepText(text.trim());
